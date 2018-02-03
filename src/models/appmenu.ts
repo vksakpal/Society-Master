@@ -9,4 +9,4 @@ export class appmenu
         this.routepath = routepath;
         this.childmenuitems = childmenuitems;
     }
-}
+}   
