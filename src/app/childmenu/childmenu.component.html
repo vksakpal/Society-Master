@@ -1,0 +1,3 @@
+<a mat-button [matMenuTriggerFor]="parentmenu"  *ngFor="let menu of childmenuitems" routerLink='{{menu.routepath}}'>{{menu.menudescription}}
+  <childmenu parentmenu="menu.menudescription" childmenuitems="menu.childmenuitems"></childmenu>
+</a>

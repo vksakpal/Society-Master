@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a mat-button routerLink='' class="homelink">
+      <mat-icon>home</mat-icon>
+      Society Master
+    </a>
+    <a mat-button  *ngFor="let menu of menuList" routerLink='{{menu.routepath}}'>{{menu.menudescription}}      
+    </a>
+
+    
+    <!-- <childmenu *ngFor="let menu of menuList" parentmenu="menu.menudescription" childmenuitems="menu.childmenuitems"></childmenu> -->
+
+  </mat-toolbar-row>
+</mat-toolbar>
