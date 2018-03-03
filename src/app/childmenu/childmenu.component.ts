@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input,ViewChild } from '@angular/core';
+import { appmenu } from '../../models/appmenu';
+
 
 @Component({
   selector: 'childmenu',
@@ -7,12 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChildmenuComponent implements OnInit {
 
-  parentmenu:string;
-  childmenuitems:any;
+ 
 
-  constructor(parentmenu, childmenuitems) {
-    this.parentmenu = parentmenu;
-    this.childmenuitems = childmenuitems;
+  @Input() items: appmenu[];
+  @ViewChild('childmenu1') public childmenu1;
+
+  constructor() {
+    
    }
 
   ngOnInit() {

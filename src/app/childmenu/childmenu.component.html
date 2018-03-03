@@ -1,3 +1,16 @@
-<a mat-button [matMenuTriggerFor]="parentmenu"  *ngFor="let menu of childmenuitems" routerLink='{{menu.routepath}}'>{{menu.menudescription}}
-  <childmenu parentmenu="menu.menudescription" childmenuitems="menu.childmenuitems"></childmenu>
-</a>
+<mat-menu #childmenu1="matMenu" [overlapTrigger]="false">
+  <span *ngFor="let menuItem of items">     
+    <span *ngIf="menuItem.childmenuitems && menuItem.childmenuitems.length > 0">
+      <a class="menu-item" color="primary" mat-raised-button color="primary" [matMenuTriggerFor]="menu.childmenu1">
+        <span>{{menuItem.menudescription}}</span>
+      </a>
+      <childmenu #menu [items]="menuItem.childmenuitems"></childmenu>
+    </span>
+    
+    <span *ngIf="!menuItem.childmenuitems || menuItem.childmenuitems.length === 0">
+      <button mat-menu-item [routerLink]="menuItem.routepath">        
+        <span>{{menuItem.menudescription}}</span>
+      </button>
+    </span>
+  </span>
+</mat-menu>

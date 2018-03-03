@@ -1,14 +1,20 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <a mat-button routerLink='' class="homelink">
-      <mat-icon>home</mat-icon>
-      Society Master
-    </a>
-    <a mat-button  *ngFor="let menu of menuList" routerLink='{{menu.routepath}}'>{{menu.menudescription}}      
-    </a>
+<mat-toolbar color="primary" class="menu-bar mat-elevation-z1" style="margin-bottom:10px;">
+  <a mat-button routerLink='' class="homelink">
+    <mat-icon>home</mat-icon>
+    Society Master
+  </a>
+<span *ngFor="let menuItem of menuList">
+  <span *ngIf="menuItem.childmenuitems && menuItem.childmenuitems.length > 0">
+    <button mat-button [matMenuTriggerFor]="menu.childmenu1">
+      <span>{{menuItem.menudescription}}</span>
+    </button>    
+    <childmenu #menu [items]="menuItem.childmenuitems"></childmenu>
+  </span>
 
-    
-    <!-- <childmenu *ngFor="let menu of menuList" parentmenu="menu.menudescription" childmenuitems="menu.childmenuitems"></childmenu> -->
-
-  </mat-toolbar-row>
+  <span *ngIf="!menuItem.childmenuitems || menuItem.childmenuitems.length === 0">
+    <button mat-button [routerLink]="menuItem.routepath">        
+      <span>{{menuItem.menudescription}}</span>
+    </button>
+  </span>
+</span>       
 </mat-toolbar>

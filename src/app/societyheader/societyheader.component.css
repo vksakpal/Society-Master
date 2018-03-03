@@ -3,3 +3,17 @@
     font-weight: bold;
     font-size: 15px;
 }
+
+.menu-bar {
+    min-height: auto;    
+  }
+
+  .mat-toolbar-row {
+    height: auto;
+  }
+
+  .mat-toolbar.mat-primary
+  {
+    background: #4A148C;
+    color: #fff;
+  }

@@ -7,4 +7,4 @@ export const environment = {
   production: false
 };
 
-export const API_URL = 'http://localhost:36277/api/';
+export const API_URL = 'http://localhost:36277/';

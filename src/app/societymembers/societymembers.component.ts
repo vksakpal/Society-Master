@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { SocietyMembers } from '../../models/societymembers';
+import { SocietymasterserviceService } from '../societymasterservice.service';
+import { MatTableDataSource, MatDialog,MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { CreatesocietymemberComponent } from '../createsocietymember/createsocietymember.component';
 
 @Component({
   selector: 'app-societymembers',
@@ -7,9 +11,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SocietymembersComponent implements OnInit {
 
-  constructor() { }
+ societyMemberList:MatTableDataSource<SocietyMembers> = new MatTableDataSource<SocietyMembers>();
 
-  ngOnInit() {
+ societyMembersGridColumns = ['RoomID','Name','PhoneNumber','GenderDescription','RoomArea','PossessionStartDate','IsRented'];
+
+  constructor(private societymasterservice:SocietymasterserviceService,public dialog:MatDialog) {
+
   }
 
+ 
+
+  ngOnInit() {
+    this.refreshMembers();
+  }  
+ 
+  openCreateSocietyMember()
+  {
+    let dialogRef = this.dialog.open(CreatesocietymemberComponent,{
+      height: '700px',
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(res => {      
+      this.refreshMembers();
+    });
+  }
+
+  refreshMembers()
+  {
+    
+    this.societymasterservice.getSocietyMembersList().subscribe(
+      res => {
+        this.societyMemberList = new MatTableDataSource<SocietyMembers>(res)
+      }
+    ) 
+  }
 }

@@ -1,0 +1,93 @@
+<div>
+  <div class="dialog-header">
+    <h3>{{headerTitle}}</h3>
+  </div>
+</div>
+
+<div>
+  <form fxLayout="column" class="container" [formGroup]="createSoicetyMemeberForm" (ngSubmit)="addMember()" novalidate>    
+      <mat-input-container floatPlaceholder="auto">
+          <input matInput formControlName="firstName"
+                type="text"
+                required
+                placeholder="First Name">
+      </mat-input-container>
+   
+    <mat-input-container floatPlaceholder="auto">
+        <input matInput formControlName="lastName"
+               type="text"
+               required
+               placeholder="Last Name">
+    </mat-input-container>
+
+    <mat-input-container floatPlaceholder="auto">
+        <input matInput formControlName="phoneNumber"
+               type="number"
+               required
+               placeholder="Phone Number">
+    </mat-input-container>
+
+    <mat-input-container floatPlaceholder="auto">
+      <input matInput formControlName="email"                          
+             placeholder="Email">
+    </mat-input-container>  
+
+    <mat-form-field>
+      <mat-select placeholder="Gender" formControlName="gender">
+        <mat-option>--Select--</mat-option>
+        <mat-option *ngFor="let gender of genderList" [value]="gender">
+          {{gender}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="gender.hasError('required')">Please choose gender</mat-error>
+      <mat-hint>{{gender.value?.sound}}</mat-hint>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-select (change)="populateWingRooms()" placeholder="Wing" formControlName="societywingID">
+        <mat-option>--Select--</mat-option>
+        <mat-option *ngFor="let wing of wingList" [value]="wing.SocietyWingID">
+          {{wing.WingDescription}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="societywingID.hasError('required')">Please select Wing</mat-error>
+      <mat-hint>{{societywingID.value?.sound}}</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="roomList">
+      <mat-select placeholder="Room" formControlName="roomID">
+        <mat-option>--Select--</mat-option>
+        <mat-option *ngFor="let room of roomList" [value]="room.RoomID">
+          {{room.RoomDescription}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="roomID.hasError('required')">Please select Room</mat-error>
+      <mat-hint>{{roomID.value?.sound}}</mat-hint>
+    </mat-form-field>
+
+    <mat-input-container floatPlaceholder="auto">
+      <input matInput formControlName="roomArea"
+             type="number"             
+             placeholder="Room Area">
+    </mat-input-container>
+
+ 
+
+    <mat-input-container>
+        <input matInput
+               formControlName="possessionStartDate"
+               [matDatepicker]="datePickerRef"
+               placeholder="">
+          <mat-datepicker-toggle matSuffix [for]="datePickerRef">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+    </mat-input-container>
+    <mat-datepicker #datePickerRef></mat-datepicker>    
+
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end">
+      <button mat-raised-button class="bg-warn" [mat-dialog-close]="true">Close</button>
+      <button type="submit" mat-raised-button class="bg-success" [disabled]="!createSoicetyMemeberForm.valid">Add Member</button>
+    </div>   
+  </form>
+</div>

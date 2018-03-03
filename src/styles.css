@@ -1,2 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css"
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.custom-button
+{
+    background: #4A148C;
+    color: #ffffff!important;
+}
+
+.text-right
+{
+    text-align: right;
+}
+
+.dialog-header
+{
+
+    background: #4A148C;
+    color: #ffffff!important;
+    padding: 1px;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    padding-left: 15px;
+}
+
+.mat-dialog-container{
+    padding-top:0px!important;
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+}
+
+.bg-warn
+{
+    background: red;
+    color: #ffffff!important;
+}
+
+.bg-success
+{
+    background: green;
+    color: #ffffff!important;
+}

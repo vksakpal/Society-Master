@@ -1,3 +1,8 @@
-<p>
-  tenantdetails works!
-</p>
+<mat-input-container floatPlaceholder="auto">
+    <input matInput [(ngModel)]="service.value"
+           type="text"
+           required
+           placeholder="">
+</mat-input-container>
+
+<label>{{service.value}}</label>

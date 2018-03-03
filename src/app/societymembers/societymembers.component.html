@@ -1,3 +1,48 @@
-<p>
-  societymembers works!
-</p>
+<mat-card style="padding:5px">
+   <div class="text-right">
+       <button mat-raised-button class="custom-button" (click)='openCreateSocietyMember()'>Add Society Member</button>
+   </div>
+</mat-card>
+
+<div class="example-container mat-elevation-z8" style="margin-top:10px;">
+    <mat-table #table [dataSource]="societyMemberList">
+        <ng-container matColumnDef="RoomID">
+            <mat-header-cell *matHeaderCellDef> Wing - Room No </mat-header-cell>
+            <mat-cell *matCellDef="let member"> {{member.WingName}}-{{member.RoomNo}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="GenderDescription">
+            <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+            <mat-cell *matCellDef="let member"> {{member.GenderDescription}} </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="Name">
+            <mat-header-cell *matHeaderCellDef> Member Name </mat-header-cell>
+            <mat-cell *matCellDef="let member"> {{member?.FirstName}} {{member?.LastName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="PhoneNumber">
+            <mat-header-cell *matHeaderCellDef> PhoneNumber </mat-header-cell>
+            <mat-cell *matCellDef="let member"> {{member.PhoneNumber}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="RoomArea">
+            <mat-header-cell *matHeaderCellDef> Room Area </mat-header-cell>
+            <mat-cell *matCellDef="let member"> {{member.RoomArea | number:'3.2'}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="PossessionStartDate">
+            <mat-header-cell *matHeaderCellDef> Possession Date </mat-header-cell>
+            <mat-cell *matCellDef="let member"> {{member.PossessionStartDate}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="IsRented">
+            <mat-header-cell *matHeaderCellDef>Is On Rent?</mat-header-cell>
+            
+            <mat-cell *matCellDef="let member"> {{ "member.IsRented" ? 'Yes':'No'}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="societyMembersGridColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: societyMembersGridColumns"></mat-row>
+    </mat-table>
+</div>
